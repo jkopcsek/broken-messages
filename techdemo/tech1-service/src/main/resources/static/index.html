@@ -1,0 +1,231 @@
+<html>
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.2.0/bundles/stomp.umd.min.js"></script>
+    <style type="text/css">
+        body, td {
+            font: 0.8rem solid Verdana, Arial, sans-serif;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #eeeeee;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dddddd;
+            box-shadow: 2px 2px 1px #aaaaaa;
+            display: flex;
+        }
+
+        header div {
+            padding: 8px 16px;
+        }
+        
+        main {
+            padding: 8px;
+            background-color: #eeeeee;
+        }
+
+        .card {
+            border: 1px solid #dddddd;
+            background-color: #ffffff;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 1px #aaaaaa;
+            margin: 8px;
+            width: 47vw;
+        }
+
+        .card.disabled {
+            opacity: 0.5;
+        }
+
+        .card.publisher {
+            float: left;
+        }
+
+        .card.subscriber {
+            float: right;
+        }
+
+        .card-header {
+            padding: 8px;
+            background: #fafafa;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .card-section {
+            padding: 4px;
+            border-top: 1px solid #dddddd;
+        }
+
+        .type {
+            font-weight: bold;
+            color: #333333;
+        }
+
+        span.topic {
+            font-style: italic;
+            color: #333333;
+        }
+        
+        .service-config {
+             display: flex;
+        }
+
+        .service-config div {
+            padding: 4px;
+        }
+
+        .code {
+            padding: 4px;
+            font-family: monospace;
+        }
+
+        .message {
+            display: flex;
+        }
+
+        .message .message-timestamp {
+            flex: 0;
+            padding: 4px;
+        }
+
+        .message .message-direction {
+            flex: 0;
+            padding: 4px;
+        }
+
+        .message .message-content {
+            flex: 5;
+            padding: 4px;
+        }
+
+        .message .message-reply-to {
+            flex: 0;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="tech1">
+<header>
+    <div>
+        <span class="type">DO</span>
+        <input type="topic" value="my.topic">
+        <input type="text" value="text">
+        <button>Publish</button>
+        <button>Request</button>
+        <button>Drain</button>
+    </div>
+    <div>
+        <span class="type">NEW</span>
+        <input type="topic" value="my.topic">
+        <button>Publisher</button>
+        <button>Subscriber</button>
+    </div>
+</header>
+
+<main id="tech2">
+
+
+    <section class="topic card right">
+        <div class="card-header">
+            <span class="type">SUB</span>
+            <span class="topic">my.topic</span>
+        </div>
+        <div class="card-section">
+            <div class="code">
+                msg -> stuff. do
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="message">
+                <div class="message-timestamp">
+                    07:01:29
+                </div>
+                <div class="message-direction">
+                    >
+                </div>
+                <div class="message-content">
+                    Message 1
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="topic card left">
+        <div class="card-header">
+            <span class="type">PUB</span>
+            <span class="topic">my.topic</span>
+        </div>
+        <div class="card-section">
+            <div class="service-config">
+                <div>
+                    <span class="type">DO</span>
+                    <input type="text" value="text">
+                    <button>Publish</button>
+                    <button>Request</button>
+                </div>
+                <div>
+                    <span class="type">REPEAT</span>
+                    <select>
+                        <option>~10sec</option>
+                        <option>~1sec</option>
+                        <option>~100ms</option>
+                        <option>~10ms</option>
+                    </select>
+                    <button>Enable</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="message">
+                <div class="message-timestamp">
+                    07:01:29
+                </div>
+                <div class="message-direction">
+                    >
+                </div>
+                <div class="message-content">
+                    Message 1
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="topic card left">
+        <div class="card-header">
+            Subject "data"
+            <button>Publish</button>
+            <button>Request</button>
+            <button>Read/Drain</button>
+        </div>
+        <div class="card-section">
+            <div class="message">
+                <div class="message-timestamp">
+                    07:01:29
+                </div>
+                <div class="message-direction">
+                    >
+                </div>
+                <div class="message-content">
+                    Message 1
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</div>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
